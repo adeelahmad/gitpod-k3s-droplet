@@ -12,7 +12,7 @@ LEGO_VOLUME_ID=a705e73d-7d8f-11eb-84cd-0a58ac14d02e
 # if given, the helm chart of this commit is used
 # leave empty to use latest from charts.gitpod.io
 # https://github.com/gitpod-io/gitpod/releases/tag/v0.9.0
-GITPOD_COMMIT_ID=25ece59c495d525614f28971d41d5708a31bf1e3
+GITPOD_COMMIT_ID=ff2af4aeb742e94eae462f52fe1383ce62255bfd
 
 #DROPLET_SIZE=s-1vcpu-1gb
 DROPLET_SIZE=s-2vcpu-4gb

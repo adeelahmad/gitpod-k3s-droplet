@@ -47,11 +47,9 @@ metadata:
   labels:
     app: gitpod
 data:
-  cert.pem: $CERT
-  chain.pem: $CHAIN
-  dhparams.pem: $DHPARAMS
-  fullchain.pem: $FULLCHAIN
-  privkey.pem: $PRIVKEY
+  tls.crt: $FULLCHAIN
+  tls.cert: $FULLCHAIN
+  tls.key: $PRIVKEY
 EOF
 
 cp gitpod-install/calico.yaml /var/lib/rancher/k3s/server/manifests/calico.yaml
