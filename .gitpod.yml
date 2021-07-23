@@ -4,8 +4,8 @@ image:
 tasks:
   - command: |
       mkdir /home/gitpod/.ssh
-      echo "$DIGITALOCEAN_SSH_KEY" | base64 --decode > /home/gitpod/.ssh/id_rsa
-      echo "$DIGITALOCEAN_SSH_PUBKEY" | base64 --decode > /home/gitpod/.ssh/id_rsa.pub
+      echo "$DIGITALOCEAN_SSH_KEY" | base64 --ignore-garbage --decode > /home/gitpod/.ssh/id_rsa
+      echo "$DIGITALOCEAN_SSH_PUBKEY" | base64 --ignore-garbage --decode > /home/gitpod/.ssh/id_rsa.pub
       chmod 600 /home/gitpod/.ssh/id_rsa*
       echo "Host *" >> /home/gitpod/.ssh/config
       echo "    StrictHostKeyChecking no" >> /home/gitpod/.ssh/config
