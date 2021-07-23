@@ -25,9 +25,9 @@ doctl compute droplet create "$DROPLET_NAME" \
     --wait
 
 IP=$(doctl compute droplet get "$DROPLET_NAME" --format PublicIPv4 --no-header)
-doctl compute domain records create "$DOMAIN_NAME" --record-type A --record-name "$DOMAIN_NAME" --record-data "$IP" --record-ttl 30
-doctl compute domain records create "$DOMAIN_NAME" --record-type A --record-name "*.$DOMAIN_NAME" --record-data "$IP" --record-ttl 30
-doctl compute domain records create "$DOMAIN_NAME" --record-type A --record-name "*.ws.$DOMAIN_NAME" --record-data "$IP" --record-ttl 30
+doctl compute domain records create "$DOMAIN_NAME" --record-type A --record-name "@" --record-data "$IP" --record-ttl 30
+doctl compute domain records create "$DOMAIN_NAME" --record-type A --record-name "*" --record-data "$IP" --record-ttl 30
+doctl compute domain records create "$DOMAIN_NAME" --record-type A --record-name "*.ws" --record-data "$IP" --record-ttl 30
 
 doctl compute droplet create "${DROPLET_NAME}-wsnode" \
     --image ubuntu-20-04-x64 \
