@@ -68,7 +68,7 @@ authProviders:
   host: "github.com"
   type: "GitHub"
   oauth:
-    clientId: "6336ac6113b9f068fd78"
+    clientId: "edc19e506b249434abd2"
     clientSecret: "$GITPOD_GITHUB_CLIENT_SECRET"
     callBackUrl: "https://featureflag.com/auth/github.com/callback"
     settingsUrl: "https://github.com/settings/applications/1490056"
