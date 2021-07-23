@@ -71,6 +71,6 @@ authProviders:
     clientId: "edc19e506b249434abd2"
     clientSecret: "$GITPOD_GITHUB_CLIENT_SECRET"
     callBackUrl: "https://featureflag.com/auth/github.com/callback"
-    settingsUrl: "https://github.com/settings/applications/1490056"
+    settingsUrl: "https://github.com/settings/applications/1071158"
   description: ""
   icon: ""
