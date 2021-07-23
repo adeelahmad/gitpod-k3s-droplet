@@ -3,7 +3,7 @@
 set -exuo pipefail
 
 DROPLET_NAME=gitpod-k3s
-DOMAIN_NAME=ludmann.name
+DOMAIN_NAME=featureflag.com
 
 doctl compute droplet delete "$DROPLET_NAME" --force || true
 doctl compute droplet delete "${DROPLET_NAME}-wsnode" --force || true

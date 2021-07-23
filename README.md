@@ -16,7 +16,7 @@ The following environement variables are needed:
 | `DIGITALOCEAN_SSH_KEY_FINGERPRINT` | Fingerprint of SSH key in Digital Ocean                   |
 | `GITPOD_GITHUB_CLIENT_SECRET`      | GitHub Client Secret of the Gitpod app                    |
 
-You also need a [Digital Ocean account](https://digitalocean.com) with a configured [domain](https://cloud.digitalocean.com/networking/domains) (here `ludmann.name`) and [SSH key](https://cloud.digitalocean.com/account/security).
+You also need a [Digital Ocean account](https://digitalocean.com) with a configured [domain](https://cloud.digitalocean.com/networking/domains) (here `featureflag.com`) and [SSH key](https://cloud.digitalocean.com/account/security).
 
 ## How to change/update Gitpod version
 
