@@ -24,6 +24,9 @@ doctl compute droplet create "$DROPLET_NAME" \
     --volumes "$LEGO_VOLUME_ID" \
     --wait
 
+doctl compute domain delete "$DOMAIN_NAME" -f
+doctl compute domain create "$DOMAIN_NAME"
+
 IP=$(doctl compute droplet get "$DROPLET_NAME" --format PublicIPv4 --no-header)
 doctl compute domain records create "$DOMAIN_NAME" --record-type A --record-name "@" --record-data "$IP" --record-ttl 30
 doctl compute domain records create "$DOMAIN_NAME" --record-type A --record-name "*" --record-data "$IP" --record-ttl 30
