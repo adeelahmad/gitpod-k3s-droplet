@@ -1,0 +1,129 @@
+apiVersion: troubleshoot.sh/v1beta2
+kind: Preflight
+metadata:
+  name: gitpod
+spec:
+
+  analyzers:
+
+    ##
+    # Verify the version of Kubernetes is supported
+    - clusterVersion:
+        outcomes:
+          - fail:
+              when: "< 1.18.0"
+              message: This application requires at least Kubernetes 1.18.0 or later, and recommends 1.20.0.
+              uri: https://www.gitpod.io/docs/self-hosted/latest/requirements
+          - warn:
+              when: "< 1.18.0"
+              message: Your cluster meets the minimum version of Kubernetes, but we recommend you update to 1.18.0 or later.
+              uri: https://www.gitpod.io/docs/self-hosted/latest/requirements
+          - pass:
+              when: ">= 1.20.0"
+              message: Your cluster meets the recommended and required versions of Kubernetes.
+  
+    ##
+    # Verify that distribution of Kubernetes is supported
+    - distribution:
+        outcomes:
+          - fail:
+              when: "== docker-desktop"
+              message: The application does not support Docker Desktop Clusters
+              uri: https://www.gitpod.io/docs/self-hosted/latest/requirements
+          - fail:
+              when: "== microk8s"
+              message: The application does not support Microk8s Clusters
+              uri: https://www.gitpod.io/docs/self-hosted/latest/requirements
+          - fail:
+              when: "== minikube"
+              message: The application does not support Minikube Clusters
+              uri: https://www.gitpod.io/docs/self-hosted/latest/requirements
+          - fail:
+              when: "== aks"
+              message: The application does not support AKS Clusters
+              uri: https://www.gitpod.io/docs/self-hosted/latest/requirements
+          - fail:
+              when: "== kurl"
+              message:  The application does not support KURL Clusters
+              uri: https://www.gitpod.io/docs/self-hosted/latest/requirements
+          - fail:
+              when: "== digitalocean"
+              message: The application does not support DigitalOcean Clusters
+              uri: https://www.gitpod.io/docs/self-hosted/latest/requirements
+          - fail:
+              when: "== rke2"
+              message: The application does not support RKE2 Clusters
+              uri: https://www.gitpod.io/docs/self-hosted/latest/requirements
+          - pass:
+              when: "== eks"
+              message: EKS is a supported distribution
+          - pass:
+              when: "== gke"
+              message: GKE is a supported distribution
+          - pass:
+              when: "== k3s"
+              message: K3S is a supported distribution
+          - warn:
+              message: Unable to determine the distribution of Kubernetes
+              uri: https://www.gitpod.io/docs/self-hosted/latest/requirements
+
+    ##
+    # Verify that there are enough nodes in the Kubernetes cluster
+    - nodeResources:
+        checkName: Must have at least 2 nodes in the cluster, with 3 recommended
+        outcomes:
+        - fail:
+            when: "count() < 2"
+            message: This application requires at least 2 nodes.
+            uri: https://www.gitpod.io/docs/self-hosted/latest/requirements
+        - warn:
+            when: "count() < 3"
+            message: This application recommends at last 3 nodes.
+            uri: https://www.gitpod.io/docs/self-hosted/latest/requirements
+        - pass:
+            message: This cluster has enough nodes.
+    
+    ##
+    # Verify that there are enough memory in the nodes that make up the Kubernetes cluster
+    - nodeResources:
+        checkName: Every node in the cluster must have at least 4 GB of memory, with 16 GB recommended
+        outcomes:
+        - fail:
+            when: "min(memoryCapacity) < 4Gi"
+            message: All nodes must have at least 4 GB of memory.
+            uri: https://www.gitpod.io/docs/self-hosted/latest/requirements
+        - warn:
+            when: "min(memoryCapacity) < 16Gi"
+            message: All nodes are recommended to have at least 16 GB of memory.
+            uri: https://www.gitpod.io/docs/self-hosted/latest/requirements
+        - pass:
+            message: All nodes have at least 16 GB of memory.
+
+    ##
+    # Verify that there are enough CPU cores in the nodes that make up the Kubernetes cluster
+    - nodeResources:
+        checkName: Total CPU Cores in the cluster is 2 or greater
+        outcomes:
+          - fail:
+              when: "sum(cpuCapacity) < 2"
+              message: The cluster must contain at least 2 cores
+              uri: https://www.gitpod.io/docs/self-hosted/latest/requirements
+          - pass:
+              message: There are at least 4 cores in the cluster
+
+    ##
+    # Verify that there are enough CPU cores in the nodes that make up the Kubernetes cluster
+    - nodeResources:
+        checkName: Every node in the cluster must have at least 32 GB of ephemeral storage, with 100 GB recommended
+        outcomes:
+        - fail:
+            when: "min(ephemeralStorageCapacity) < 32Gi"
+            message: All nodes must have at least 32 GB of ephemeral storage.
+            uri: https://www.gitpod.io/docs/self-hosted/latest/requirements
+        - warn:
+            when: "min(ephemeralStorageCapacity) < 100Gi"
+            message: All nodes are recommended to have at least 100 GB of ephemeral storage.
+            uri: https://www.gitpod.io/docs/self-hosted/latest/requirements
+        - pass:
+            message: All nodes have at least 100 GB of ephemeral storage.
+
