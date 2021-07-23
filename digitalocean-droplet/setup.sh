@@ -31,7 +31,7 @@ doctl compute domain records create "$DOMAIN_NAME" --record-type A --record-name
 
 doctl compute droplet create "${DROPLET_NAME}-wsnode" \
     --image ubuntu-20-04-x64 \
-    --region fra1 \
+    --region sgp1 \
     --size "$DROPLET_SIZE" \
     --ssh-keys "$DIGITALOCEAN_SSH_KEY_FINGERPRINT" \
     --wait
