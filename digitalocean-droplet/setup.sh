@@ -6,7 +6,7 @@ doctl account get
 
 DROPLET_NAME=gitpod-k3s
 DOMAIN_NAME=featureflag.com
-LEGO_VOLUME_ID=a705e73d-7d8f-11eb-84cd-0a58ac14d02e
+LEGO_VOLUME_ID=47f11ef9-eb6b-11eb-b7e0-0a58ac14a3d5
 
 # if given, the helm chart of this commit is used
 # leave empty to use latest from charts.gitpod.io
